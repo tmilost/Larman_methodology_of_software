@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AutoPlac1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Prodata_vozila">
+          <Key>
+            <PropertyRef Name="IDVozila" />
+          </Key>
+          <Property Name="IDVozila" Type="int" Nullable="false" />
+          <Property Name="Marka" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Godiste" Type="int" Nullable="false" />
+          <Property Name="Cena" Type="int" Nullable="false" />
+          <Property Name="Boja" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BrojSedista" Type="int" Nullable="false" />
+          <Property Name="TipGoriva" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Radnik">
+          <Key>
+            <PropertyRef Name="IDRadnika" />
+          </Key>
+          <Property Name="IDRadnika" Type="int" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="JMBG" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Ugovor">
+          <Key>
+            <PropertyRef Name="BrojUgovora" />
+          </Key>
+          <Property Name="BrojUgovora" Type="int" Nullable="false" />
+          <Property Name="Marka" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Godiste" Type="int" Nullable="false" />
+          <Property Name="Cena" Type="int" Nullable="false" />
+          <Property Name="Boja" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ImeKupca" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrezimeKupca" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ImeProdavca" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrezimeProdavca" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="JBMGKupca" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDRadnika" Type="int" Nullable="false" />
+          <Property Name="IDProdatogVozila" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vozilo">
+          <Key>
+            <PropertyRef Name="IDVozila" />
+          </Key>
+          <Property Name="IDVozila" Type="int" Nullable="false" />
+          <Property Name="Marka" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Godiste" Type="int" Nullable="false" />
+          <Property Name="Cena" Type="int" Nullable="false" />
+          <Property Name="Boja" Type="nvarchar" MaxLength="50" />
+          <Property Name="BrojSedista" Type="int" Nullable="false" />
+          <Property Name="TipGoriva" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Ugovor_Prodata_vozila">
+          <End Role="Prodata_vozila" Type="Self.Prodata_vozila" Multiplicity="1" />
+          <End Role="Ugovor" Type="Self.Ugovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prodata_vozila">
+              <PropertyRef Name="IDVozila" />
+            </Principal>
+            <Dependent Role="Ugovor">
+              <PropertyRef Name="IDProdatogVozila" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ugovor_Radnik">
+          <End Role="Radnik" Type="Self.Radnik" Multiplicity="1" />
+          <End Role="Ugovor" Type="Self.Ugovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Radnik">
+              <PropertyRef Name="IDRadnika" />
+            </Principal>
+            <Dependent Role="Ugovor">
+              <PropertyRef Name="IDRadnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AutoPlac1ModelStoreContainer">
+          <EntitySet Name="Prodata_vozila" EntityType="Self.Prodata_vozila" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Radnik" EntityType="Self.Radnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ugovor" EntityType="Self.Ugovor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vozilo" EntityType="Self.Vozilo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Ugovor_Prodata_vozila" Association="Self.FK_Ugovor_Prodata_vozila">
+            <End Role="Prodata_vozila" EntitySet="Prodata_vozila" />
+            <End Role="Ugovor" EntitySet="Ugovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ugovor_Radnik" Association="Self.FK_Ugovor_Radnik">
+            <End Role="Radnik" EntitySet="Radnik" />
+            <End Role="Ugovor" EntitySet="Ugovor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AutoPlac1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Prodata_vozila">
+          <Key>
+            <PropertyRef Name="IDVozila" />
+          </Key>
+          <Property Name="IDVozila" Type="Int32" Nullable="false" />
+          <Property Name="Marka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Godiste" Type="Int32" Nullable="false" />
+          <Property Name="Cena" Type="Int32" Nullable="false" />
+          <Property Name="Boja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BrojSedista" Type="Int32" Nullable="false" />
+          <Property Name="TipGoriva" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ugovors" Relationship="Self.FK_Ugovor_Prodata_vozila" FromRole="Prodata_vozila" ToRole="Ugovor" />
+        </EntityType>
+        <EntityType Name="Radnik">
+          <Key>
+            <PropertyRef Name="IDRadnika" />
+          </Key>
+          <Property Name="IDRadnika" Type="Int32" Nullable="false" />
+          <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="JMBG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ugovors" Relationship="Self.FK_Ugovor_Radnik" FromRole="Radnik" ToRole="Ugovor" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Ugovor">
+          <Key>
+            <PropertyRef Name="BrojUgovora" />
+          </Key>
+          <Property Name="BrojUgovora" Type="Int32" Nullable="false" />
+          <Property Name="Marka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Godiste" Type="Int32" Nullable="false" />
+          <Property Name="Cena" Type="Int32" Nullable="false" />
+          <Property Name="Boja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImeKupca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PrezimeKupca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImeProdavca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PrezimeProdavca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="JBMGKupca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDRadnika" Type="Int32" Nullable="false" />
+          <Property Name="IDProdatogVozila" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Prodata_vozila" Relationship="Self.FK_Ugovor_Prodata_vozila" FromRole="Ugovor" ToRole="Prodata_vozila" />
+          <NavigationProperty Name="Radnik" Relationship="Self.FK_Ugovor_Radnik" FromRole="Ugovor" ToRole="Radnik" />
+        </EntityType>
+        <EntityType Name="Vozilo">
+          <Key>
+            <PropertyRef Name="IDVozila" />
+          </Key>
+          <Property Name="IDVozila" Type="Int32" Nullable="false" />
+          <Property Name="Marka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Godiste" Type="Int32" Nullable="false" />
+          <Property Name="Cena" Type="Int32" Nullable="false" />
+          <Property Name="Boja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BrojSedista" Type="Int32" Nullable="false" />
+          <Property Name="TipGoriva" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Ugovor_Prodata_vozila">
+          <End Role="Prodata_vozila" Type="Self.Prodata_vozila" Multiplicity="1" />
+          <End Role="Ugovor" Type="Self.Ugovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prodata_vozila">
+              <PropertyRef Name="IDVozila" />
+            </Principal>
+            <Dependent Role="Ugovor">
+              <PropertyRef Name="IDProdatogVozila" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ugovor_Radnik">
+          <End Role="Radnik" Type="Self.Radnik" Multiplicity="1" />
+          <End Role="Ugovor" Type="Self.Ugovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Radnik">
+              <PropertyRef Name="IDRadnika" />
+            </Principal>
+            <Dependent Role="Ugovor">
+              <PropertyRef Name="IDRadnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AutoPlac1Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Prodata_vozila" EntityType="Self.Prodata_vozila" />
+          <EntitySet Name="Radniks" EntityType="Self.Radnik" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Ugovors" EntityType="Self.Ugovor" />
+          <EntitySet Name="Voziloes" EntityType="Self.Vozilo" />
+          <AssociationSet Name="FK_Ugovor_Prodata_vozila" Association="Self.FK_Ugovor_Prodata_vozila">
+            <End Role="Prodata_vozila" EntitySet="Prodata_vozila" />
+            <End Role="Ugovor" EntitySet="Ugovors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ugovor_Radnik" Association="Self.FK_Ugovor_Radnik">
+            <End Role="Radnik" EntitySet="Radniks" />
+            <End Role="Ugovor" EntitySet="Ugovors" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AutoPlac1ModelStoreContainer" CdmEntityContainer="AutoPlac1Entities1">
+          <EntitySetMapping Name="Prodata_vozila">
+            <EntityTypeMapping TypeName="AutoPlac1Model.Prodata_vozila">
+              <MappingFragment StoreEntitySet="Prodata_vozila">
+                <ScalarProperty Name="IDVozila" ColumnName="IDVozila" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Godiste" ColumnName="Godiste" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+                <ScalarProperty Name="Boja" ColumnName="Boja" />
+                <ScalarProperty Name="BrojSedista" ColumnName="BrojSedista" />
+                <ScalarProperty Name="TipGoriva" ColumnName="TipGoriva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Radniks">
+            <EntityTypeMapping TypeName="AutoPlac1Model.Radnik">
+              <MappingFragment StoreEntitySet="Radnik">
+                <ScalarProperty Name="IDRadnika" ColumnName="IDRadnika" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AutoPlac1Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ugovors">
+            <EntityTypeMapping TypeName="AutoPlac1Model.Ugovor">
+              <MappingFragment StoreEntitySet="Ugovor">
+                <ScalarProperty Name="BrojUgovora" ColumnName="BrojUgovora" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Godiste" ColumnName="Godiste" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+                <ScalarProperty Name="Boja" ColumnName="Boja" />
+                <ScalarProperty Name="ImeKupca" ColumnName="ImeKupca" />
+                <ScalarProperty Name="PrezimeKupca" ColumnName="PrezimeKupca" />
+                <ScalarProperty Name="ImeProdavca" ColumnName="ImeProdavca" />
+                <ScalarProperty Name="PrezimeProdavca" ColumnName="PrezimeProdavca" />
+                <ScalarProperty Name="JBMGKupca" ColumnName="JBMGKupca" />
+                <ScalarProperty Name="IDRadnika" ColumnName="IDRadnika" />
+                <ScalarProperty Name="IDProdatogVozila" ColumnName="IDProdatogVozila" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voziloes">
+            <EntityTypeMapping TypeName="AutoPlac1Model.Vozilo">
+              <MappingFragment StoreEntitySet="Vozilo">
+                <ScalarProperty Name="IDVozila" ColumnName="IDVozila" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Godiste" ColumnName="Godiste" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+                <ScalarProperty Name="Boja" ColumnName="Boja" />
+                <ScalarProperty Name="BrojSedista" ColumnName="BrojSedista" />
+                <ScalarProperty Name="TipGoriva" ColumnName="TipGoriva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

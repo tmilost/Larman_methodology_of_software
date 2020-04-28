@@ -1,0 +1,107 @@
+﻿@model IEnumerable<AutoPlac0.Prodata_vozila>
+
+@{
+    ViewBag.Title = "Index";
+}
+@{int i = 0;
+}
+
+<h2>Prodata vozila</h2>
+
+<p>
+  
+</p>
+
+@using (Html.BeginForm("Index", "Prodata_vozila", FormMethod.Get))
+{
+    i = 1;
+    i++;
+
+    <p>
+        <b>Marka:</b>
+        @Html.TextBox("searchMarka")
+    </p>
+    <p>
+        <b>Model:</b>
+        @Html.TextBox("searchMod")
+    </p>
+    <p>
+        <input type="submit" value="Pretraga" />
+    </p>
+}
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IDVozila)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Godiste)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boja)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrojSedista)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipGoriva)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            ++i;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDVozila)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Godiste)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Boja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrojSedista)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipGoriva)
+            </td>
+            <td>
+              
+                @Html.ActionLink("Details", "Details", new { id = item.IDVozila }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IDVozila })
+            </td>
+        </tr>
+        }
+
+        @if (i > 1 && i < 3)
+        {
+            Response.Write(@"<script language= 'javascript'>alert('Ne postoji prodato vozilo');</script>");
+
+        }
+        else
+        {
+
+        }
+    </table>

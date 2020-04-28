@@ -1,0 +1,74 @@
+﻿@model AutoPlac0.Vozilo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Vozilo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Marka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Godiste)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Godiste)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Boja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Boja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrojSedista)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrojSedista)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipGoriva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipGoriva)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDVozila }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

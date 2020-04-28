@@ -1,0 +1,114 @@
+﻿@model AutoPlac0.Ugovor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ugovor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Marka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Godiste)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Godiste)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Boja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Boja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImeKupca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImeKupca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrezimeKupca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrezimeKupca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImeProdavca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImeProdavca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrezimeProdavca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrezimeProdavca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JBMGKupca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JBMGKupca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prodata_vozila.IDVozila)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prodata_vozila.IDVozila)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Radnik.IDRadnika)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Radnik.IDRadnika)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BrojUgovora }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

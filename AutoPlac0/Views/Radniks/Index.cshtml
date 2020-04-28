@@ -1,0 +1,83 @@
+﻿@model IEnumerable<AutoPlac0.Radnik>
+
+@{
+    ViewBag.Title = "Index";
+}
+@{int i = 0;
+}
+
+<h2>Radnici</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Radniks", FormMethod.Get))
+{
+    i = 1;
+    i++;
+
+    <p>
+        <b style="margin-right:2px">Ime:</b>
+        @Html.TextBox("searchIme")
+    </p>
+    <p>
+        <b>Prezime:</b>
+        @Html.TextBox("searchPrezime")
+    </p>
+    <p>
+        <input type="submit" value="Pretraga" />
+    </p>
+}
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IDRadnika)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prezime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JMBG)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            ++i;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDRadnika)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prezime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JMBG)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IDRadnika }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IDRadnika }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IDRadnika })
+            </td>
+        </tr>
+        }
+        @if (i > 1 && i < 3)
+        {
+            Response.Write(@"<script language= 'javascript'>alert('Ne postoji radnik.');</script>");
+
+        }
+        else
+        {
+
+        }
+
+    </table>

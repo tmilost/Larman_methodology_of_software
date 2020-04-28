@@ -1,0 +1,99 @@
+﻿@model IEnumerable<AutoPlac0.Ugovor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Marka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Godiste)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Boja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImeKupca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrezimeKupca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImeProdavca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrezimeProdavca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JBMGKupca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prodata_vozila.Marka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Radnik.Ime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marka)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Godiste)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cena)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Boja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImeKupca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrezimeKupca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImeProdavca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrezimeProdavca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JBMGKupca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prodata_vozila.Marka)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Radnik.Ime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BrojUgovora }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BrojUgovora }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BrojUgovora })
+        </td>
+    </tr>
+}
+
+</table>
