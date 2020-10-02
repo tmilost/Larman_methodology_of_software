@@ -1,0 +1,85 @@
+<Window x:Class="ApotekaVezbanje1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ApotekaVezbanje1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="531.567" Width="732.5">
+    <Grid>
+        <Menu VerticalAlignment="Top" HorizontalAlignment="Left">
+            <MenuItem Header="Rad sa lekovima">
+                <MenuItem Header="unos novog leka" Click="MenuItem_Click"></MenuItem>
+            </MenuItem>
+
+        </Menu>
+        <DataGrid HorizontalAlignment="Left" Height="189" Margin="34,69,0,0" VerticalAlignment="Top" Width="371" Name="dataGreed" AutoGenerateColumns="False" SelectionChanged="DataGreed_SelectionChanged_1">
+            <DataGrid.BindingGroup>
+                <BindingGroup/>
+            </DataGrid.BindingGroup>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Sifra recepta" Width="120" Binding="{Binding ReceptID}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ime bolesnika" Width="120" Binding="{Binding Ime}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Prezime bolesnika" Width="120" Binding="{Binding Prezime}"></DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <Border>
+                        <Grid Background="BlanchedAlmond">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                <ColumnDefinition  Width="80"></ColumnDefinition>
+                                <ColumnDefinition  Width="80"></ColumnDefinition>
+                                <ColumnDefinition  Width="80"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Sifra bolesti"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SifraBolesti}" IsReadOnly="True"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Sifra leka"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SifraLeka}" IsReadOnly="True"/>
+                            <TextBlock Grid.Row="1" Grid.Column="2" Text="Broj kutija"/>
+                            <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding BrKutija}" IsReadOnly="True"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+
+        <GroupBox Header="Naplata" HorizontalAlignment="Left" Height="185" Margin="439,23,0,0" VerticalAlignment="Top" Width="259"/>
+        <Label Content="Broj kutija" HorizontalAlignment="Left" Margin="454,48,0,0" VerticalAlignment="Top"/>
+        <Slider HorizontalAlignment="Left" Margin="522,54,0,0" VerticalAlignment="Top" Width="101" Name="Slajder" Value="{Binding SelectedItem.BrKutija, ElementName=dataGreed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="4" SmallChange="1" ValueChanged="Slajder_ValueChanged"/>
+        <Label Content="Jedinicna cena" HorizontalAlignment="Left" Margin="454,86,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="563,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="37" Name="tbJedinicnaCena"/>
+        <Button Content="Naplati" HorizontalAlignment="Left" Margin="525,131,0,0" VerticalAlignment="Top" Width="75" Name="tbNaplati" Click="tbNaplati_Click"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="633,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Name="tbBrojKutija" Text="{Binding Value, ElementName=Slajder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Za naplatu" HorizontalAlignment="Left" Margin="454,166,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="533,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" x:Name="tbZaNaplatu"/>
+        <Label Content="dinara" HorizontalAlignment="Left" Margin="613,168,0,0" VerticalAlignment="Top"/>
+        
+        <GroupBox Header="Pretraga po dijagnozi" HorizontalAlignment="Left" Height="189" Margin="34,283,0,0" VerticalAlignment="Top" Width="304"/>
+        <Label Content="Dijagnoza" HorizontalAlignment="Left" Margin="50,322,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="148,326,0,0" VerticalAlignment="Top" Width="120" Name="cbDijagnoza" SelectionChanged="cbDijagnoza_SelectionChanged" SelectedValuePath="SifraBolesti" DisplayMemberPath="Naziv"/>
+        <Button Content="Minimalna doza" HorizontalAlignment="Left" Margin="50,376,0,0" VerticalAlignment="Top" Width="99" x:Name="btnMinimalnaDoza" Click="btnMinimalnaDoza_Click"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="172,376,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147" Name="tbMinimalnaDoza" />
+        <Label Content="Broj kutija" HorizontalAlignment="Left" Margin="50,421,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="148,425,0,0" VerticalAlignment="Top" Width="120" x:Name="cbBrojKutija" SelectionChanged="cbBrojKutija_SelectionChanged"/>
+        
+        <GroupBox Header="Storniraj" HorizontalAlignment="Left" Height="90" Margin="442,226,0,0" VerticalAlignment="Top" Width="256"/>
+        <Label Content="Sifra recepta" HorizontalAlignment="Left" Margin="480,249,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="559,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" x:Name="tbSifraRecepta"/>
+        <Button Content="Storniraj" HorizontalAlignment="Left" Margin="525,283,0,0" VerticalAlignment="Top" Width="75" x:Name="Storniraj" Click="Storniraj_Click"/>
+        <ListView HorizontalAlignment="Left" Height="146" Margin="355,326,0,0" VerticalAlignment="Top" Width="343" Name="listVju" SelectionChanged="ListVju_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Ime}" Margin="5"/>
+                        <TextBlock Text="{Binding Prezime}" Margin="5"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>
